@@ -108,7 +108,7 @@
         <div class="row g-0">
             <div class="col-lg-6 py-6 px-5">
                 <h1 class="display-5 mb-4">Contact For Any Queries</h1>
-                <form>
+                <form id="contactForm">
                     <div class="row g-3">
                         <div class="col-6">
                             <div class="form-floating">
@@ -135,7 +135,7 @@
                               </div>
                         </div>
                         <div class="col-12">
-                            <button class="btn btn-primary w-100 py-3" type="submit">Submit</button>
+                            <button class="btn btn-primary w-100 py-3" type="submit">Send via WhatsApp</button>
                         </div>
                     </div>
                 </form>
@@ -224,6 +224,35 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
+    <!-- WhatsApp Integration Script -->
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Get form values
+            const fullName = document.getElementById('form-floating-1').value;
+            const email = document.getElementById('form-floating-2').value;
+            const subject = document.getElementById('form-floating-3').value;
+            const message = document.getElementById('form-floating-4').value;
+
+            // Your WhatsApp number (international format, no '+' or spaces)
+            const whatsappNumber = '254791371301'; // Replace with your actual WhatsApp number
+
+            // Construct the message
+            let whatsappMessage = `New Contact Form Submission:\n\n`;
+            whatsappMessage += `Full Name: ${fullName}\n`;
+            whatsappMessage += `Email: ${email}\n`;
+            whatsappMessage += `Subject: ${subject}\n`;
+            whatsappMessage += `Message: ${message}\n`;
+
+            // Encode the message for the URL
+            const encodedMessage = encodeURIComponent(whatsappMessage);
+
+            // Create the WhatsApp link and open it
+            window.open(`https://wa.me/${254791371301}?text=${encodedMessage}`, '_blank');
+        });
+    </script>
 </body>
 
 </html>
